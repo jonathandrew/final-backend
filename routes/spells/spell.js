@@ -18,7 +18,13 @@ router.get("/", (req, res, next) => {
   });
 });
 
-router.post("/", (req, res, next) => {
+router.get("/spells", (req, res, next) => {
+  Spell.find({}).then((info) => {
+    return res.json(info);
+  });
+});
+
+router.post("/createspell", (req, res, next) => {
   const newSpell = new Spell();
   newSpell.spell = req.body.spell;
   newSpell.effect = req.body.effect;
